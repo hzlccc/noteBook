@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huayu.user.mapper.UserMapper">
+	<select id="getAllUsers" resultType="com.huayu.bean.user.User">
+		 SELECT
+		 	CID,
+			UserName,
+			PassWord,
+			RealName,
+			C_Province AS CProvince,
+			C_City AS CCity,
+			C_Region AS CRegion,
+			Address AS CAddress,
+			C_Desc AS CDesc,
+			D_Age AS DAge
+		FROM
+			db_user.t_user
+	</select>
+	<select id="getAllShgx" resultType="com.huayu.bean.user.Shgx">
+		 SELECT
+		 	C_ID AS CId,
+			C_User_ID AS CUserId,
+			C_Name AS CName,
+			C_Sex AS CSex,
+			D_Age AS DAge,
+			C_Address AS CAddress
+		FROM
+			db_user.t_user_shgx
+	</select>
+	
+	<select id="getAllSrjl" resultType="com.huayu.bean.user.Srjl">
+		 SELECT
+			C_ID AS CId,
+			C_User_ID AS CUserId,
+			D_SRJE AS DSrje
+			
+		FROM
+			db_user.t_user_srjl
+	</select>
+	<select id="getUserById"  resultType="com.huayu.bean.user.User" parameterType="String">
+        		SELECT
+		 	CID,
+			UserName,
+			PassWord,
+			RealName,
+			C_Province AS CProvince,
+			C_City AS CCity,
+			C_Region AS CRegion,
+			Address AS CAddress,
+			C_Desc AS CDesc,
+			D_Age AS DAge
+		FROM
+			db_user.t_user
+		WHERE
+			CID = #{userId}
+    	</select>
+	
+	<select id="getShgx"  resultType="com.huayu.bean.user.Shgx" parameterType="String">
+        		SELECT
+			C_ID AS CId,
+			C_User_ID AS CUserId,
+			C_Name AS CName,
+			C_Sex AS CSex,
+			D_Age AS DAge,
+			C_Address AS CAddress
+		FROM
+			db_user.t_user_shgx
+		WHERE
+			C_User_ID = #{userId}
+    </select>
+    <select id="getSrjl"  resultType="com.huayu.bean.user.Srjl" parameterType="String">
+        		SELECT
+			C_ID AS CId,
+			C_User_ID AS CUserId,
+			D_SRJE AS DSrje
+			
+		FROM
+			db_user.t_user_srjl
+		WHERE
+			C_User_ID = #{userId}
+    </select>
+    
+    <select id="getPCode"  resultType="com.huayu.bean.code.PCode">
+        		SELECT
+			C_PID AS CPid,
+			C_Name AS CName
+			
+		FROM
+			db_code.t_sys_pcode
+		
+    </select>
+    
+    <select id="getCodeById"  resultType="com.huayu.bean.code.Code" parameterType="String">
+        		SELECT
+			C_PID AS CPid,
+			C_Code AS CCode,
+			C_Name AS CName
+			
+		FROM
+			db_code.t_sys_code
+		WHERE
+			C_PID = #{pid}
+    </select>
+    
+    <!-- 
+    <select id="getAllCorps"  resultType="com.thunisoft.jy.exchange.process.common.bean.Corp">
+        SELECT
+			C_ID AS CId,
+			C_Name AS CName,
+			C_Alias AS CAlias,
+			C_PID AS CPid,
+			C_SFGYDW AS CSfgydw,
+			C_JB AS CJb,
+			C_GBM AS CGbm,
+			C_LRM AS CLrm
+		FROM
+			DB_JY..T_SYS_Corp
+		WHERE
+			N_Valid = '1'
+    </select>
+     <select id="getAllDepts"  resultType="com.thunisoft.jy.exchange.process.common.bean.Dept">
+        SELECT
+			C_ID AS CId,
+			C_Name AS CName,
+			C_Alias AS CAlias,
+			C_PID AS CPid,
+			C_CorpID AS CCorpId,
+			C_BMLB AS CBmlb,
+			C_SFGYBM AS CSfgybm,
+			C_LRM AS CLrm
+		FROM
+			DB_JY..T_SYS_Dept
+		WHERE
+			N_Valid = '1'
+    </select>
+     -->
+     
+     
+     
+     <insert id="insertUser" parameterType="java.util.List" useGeneratedKeys="false">
+    			insert into db_user.t_user
+    			(CID,UserName,PassWord,RealName,C_Province,C_City,C_Region,Address,C_Desc,D_Age)
+    			values
+    			<foreach collection="list" item="item" index="index" separator=",">
+    				(
+    					#{item.CId},
+    					#{item.UserName},
+    					#{item.PassWord},
+    					#{item.RealName},
+    					#{item.CProvince},
+    					#{item.CCity},
+    					#{item.CRegion},
+    					#{item.CAddress},
+    					#{item.CDesc},
+    					#{item.DAge}
+    				)
+    		     </foreach>		
+    </insert>    
+    
+     <insert id="insertShgx" parameterType="java.util.List" useGeneratedKeys="false">
+    			insert into db_user.t_user_shgx
+    			(C_ID,C_User_ID,C_Name,C_Sex,D_Age,C_Address)
+    			values
+    			<foreach collection="list" item="item" index="index" separator=",">
+    				(
+    					#{item.CId},
+    					#{item.CUserId},
+    					#{item.CName},
+    					#{item.CSex},
+    					#{item.DAge},
+    					#{item.CAddress}
+    				)
+    		     </foreach>		
+    </insert>    
+    <insert id="insertSrjl" parameterType="java.util.List" useGeneratedKeys="false">
+    			insert into db_user.t_user_srjl
+    			(C_ID,C_User_ID,D_SRJE)
+    			values
+    			<foreach collection="list" item="item" index="index" separator=",">
+    				(
+    					#{item.CID},
+    					#{item.CUserID},
+    					#{item.DSrje}
+    					
+    				)
+    		     </foreach>		
+    </insert>    
+
+</mapper>

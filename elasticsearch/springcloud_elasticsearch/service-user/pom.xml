@@ -1,0 +1,123 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.huayu</groupId>
+  <artifactId>service-user</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+   <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.2.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!-- mysql 依赖 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.11</version>
+		</dependency>
+		<!-- Java High Level REST Client -->
+        		<dependency>
+            		<groupId>org.elasticsearch.client</groupId>
+            		<artifactId>elasticsearch-rest-high-level-client</artifactId>
+           		 <version>6.3.2</version>
+            		<exclusions>
+                			<exclusion>
+                    			<groupId>org.elasticsearch</groupId>
+                    			<artifactId>elasticsearch</artifactId>
+                			</exclusion>
+            		</exclusions>
+        		</dependency>
+
+		        <!-- Client 包缺少一些东西，因此引入此包
+		            可以具体查看ISSUE https://github.com/elastic/elasticsearch/issues/26959
+		         -->
+        		<dependency>
+            		<groupId>org.elasticsearch</groupId>
+           		 <artifactId>elasticsearch</artifactId>
+            		<version>6.3.2</version>
+        		</dependency>
+		<dependency>
+        			<groupId>com.alibaba</groupId>
+        			<artifactId>fastjson</artifactId>
+        			<version>1.2.44</version>      
+    		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.luxsuen/jsonutil -->
+		<dependency>
+		    <groupId>com.luxsuen</groupId>
+		    <artifactId>jsonutil</artifactId>
+		    <version>1.0.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.uuid/java-uuid-generator -->
+		<dependency>
+		    <groupId>com.fasterxml.uuid</groupId>
+		    <artifactId>java-uuid-generator</artifactId>
+		    <version>3.2.0</version>
+		</dependency>
+		<dependency>
+    			<groupId>org.springframework.boot</groupId>
+    			<artifactId>spring-boot-starter-redis</artifactId>
+    			<version>1.4.1.RELEASE</version>
+		</dependency>
+		<dependency>
+            		<groupId>org.apache.rocketmq</groupId>
+            		<artifactId>rocketmq-client</artifactId>
+            		<version>4.2.0</version>
+       		 </dependency>
+
+	
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Dalston.RC1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+</project>

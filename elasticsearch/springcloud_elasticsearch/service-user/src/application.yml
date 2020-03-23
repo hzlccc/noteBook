@@ -1,0 +1,28 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.0.111:8888/eureka/
+instance:
+       instance-id:
+       prefer-ip-address: true
+server:
+  port: 8763
+spring:
+  application:
+    name: service-user
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_user?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+jedis :  
+  pool :  
+    host : 127.0.0.1  
+    port : 6379  
+    config :  
+      maxTotal: 100  
+      maxIdle: 10  
+      maxWaitMillis : 100000
